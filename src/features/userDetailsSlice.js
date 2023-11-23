@@ -4,7 +4,7 @@ export const createUser = createAsyncThunk(
   "createUser",
   async (data, { rejectWithValue }) => {
     const result = await fetch(
-      "https://655f4da3879575426b450f56.mockapi.io/crud/",
+      "https://641dd63d945125fff3d75742.mockapi.io/crud",
       {
         method: "POST",
         headers: {
@@ -43,7 +43,7 @@ export const userDetail = createSlice({
     },
     [createUser.fulfilled]: (state, action) => {
       state.loading = false;
-      state.users.push(action.payload);
+      state.users.push(action.payload); 
     },
     [createUser.rejected]: {},
   },
