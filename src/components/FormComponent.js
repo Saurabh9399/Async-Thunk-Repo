@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button, Container } from 'reactstrap';
 import { createUser } from '../features/userDetailsSlice';
+import { useNavigate } from 'react-router-dom';
 
 const MyFormComponent = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
@@ -23,6 +25,12 @@ const MyFormComponent = () => {
     e.preventDefault();
     console.log(formData);
     dispatch(createUser(formData)); 
+    setFormData({
+      name: '',
+      gender: '',
+      age: '',
+    })
+    navigate("/users")
   };
 
   return (
@@ -53,6 +61,8 @@ const MyFormComponent = () => {
             <option value="">Select gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
+            <option value="others">Others</option>
+
           </Input>
         </FormGroup>
 
