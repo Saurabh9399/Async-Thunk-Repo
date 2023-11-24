@@ -1,6 +1,16 @@
 // UserEditModal.js
-import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import React, { useState } from "react";
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+} from "reactstrap";
 
 const UserEditModal = ({ isOpen, toggle, user, onSave }) => {
   const [editedUser, setEditedUser] = useState({ ...user });
@@ -16,21 +26,48 @@ const UserEditModal = ({ isOpen, toggle, user, onSave }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle} className={isOpen ? 'zoom-in' : 'zoom-out'}>
+    <Modal
+      isOpen={isOpen}
+      toggle={toggle}
+      className={isOpen ? "zoom-in" : "zoom-out"}
+    >
       <ModalHeader toggle={toggle}>Edit {user.name}'s Details</ModalHeader>
       <ModalBody>
         <Form>
           <FormGroup>
             <Label for="editName">Name</Label>
-            <Input type="text" name="name" id="editName" value={editedUser.name} onChange={handleInputChange} />
+            <Input
+              type="text"
+              name="name"
+              id="editName"
+              value={editedUser.name}
+              onChange={handleInputChange}
+            />
           </FormGroup>
           <FormGroup>
             <Label for="editGender">Gender</Label>
-            <Input type="text" name="gender" id="editGender" value={editedUser.gender} onChange={handleInputChange} />
+            <Input
+              type="select"
+              name="gender"
+              id="editGender"
+              value={editedUser.gender}
+              onChange={handleInputChange}
+            >
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="others">Others</option>
+            </Input>
           </FormGroup>
           <FormGroup>
             <Label for="editAge">Age</Label>
-            <Input type="text" name="age" id="editAge" value={editedUser.age} onChange={handleInputChange} />
+            <Input
+              type="text"
+              name="age"
+              id="editAge"
+              value={editedUser.age}
+              onChange={handleInputChange}
+            />
           </FormGroup>
           {/* Add more form fields as needed */}
         </Form>

@@ -1,87 +1,69 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Container } from 'reactstrap';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FormGroup, Label, Input, Button, Container } from 'reactstrap';
 import { createUser } from '../features/userDetailsSlice';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
 const MyFormComponent = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    gender: Yup.string().required('Gender is required'),
+    age: Yup.number().required('Age is required').positive('Age must be a positive number'),
+  });
+
+  const initialValues = {
     name: '',
     gender: '',
     age: '',
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    dispatch(createUser(formData)); 
-    setFormData({
-      name: '',
-      gender: '',
-      age: '',
-    })
-    navigate("/users")
+  const onSubmit = (values, { setSubmitting }) => {
+    console.log(values);
+    dispatch(createUser(values));
+    setSubmitting(false);
+    navigate('/users');
   };
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center vh-100" style={{ backgroundColor: '#f8f9fa' }}>
       <h2 className="mb-4">Add User Data</h2>
-      <Form className="w-75 mx-auto" onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label for="name">Name</Label>
-          <Input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Enter your name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
-        </FormGroup>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        {({ isSubmitting }) => (
+          <Form className="w-75 mx-auto">
+            <FormGroup>
+              <Label for="name">Name</Label>
+              <Field type="text" name="name" id="name" as={Input} placeholder="Enter your name" />
+              <ErrorMessage name="name" component="div" className="text-danger" />
+            </FormGroup>
 
-        <FormGroup>
-          <Label for="gender">Gender</Label>
-          <Input
-            type="select"
-            name="gender"
-            id="gender"
-            value={formData.gender}
-            onChange={handleInputChange}
-          >
-            <option value="">Select gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="others">Others</option>
+            <FormGroup>
+              <Label for="gender">Gender</Label>
+              <Field type="select" name="gender" id="gender" as={Input}>
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+              </Field>
+              <ErrorMessage name="gender" component="div" className="text-danger" />
+            </FormGroup>
 
-          </Input>
-        </FormGroup>
+            <FormGroup>
+              <Label for="age">Age</Label>
+              <Field type="number" name="age" id="age" as={Input} placeholder="Enter your age" />
+              <ErrorMessage name="age" component="div" className="text-danger" />
+            </FormGroup>
 
-        <FormGroup>
-          <Label for="age">Age</Label>
-          <Input
-            type="number"
-            name="age"
-            id="age"
-            placeholder="Enter your age"
-            value={formData.age}
-            onChange={handleInputChange}
-          />
-        </FormGroup>
-
-        <Button color="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+            <Button color="primary" type="submit" disabled={isSubmitting}>
+              Submit
+            </Button>
+          </Form>
+        )}
+      </Formik>
     </Container>
   );
 };
