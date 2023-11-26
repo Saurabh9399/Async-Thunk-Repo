@@ -1,7 +1,7 @@
 // Login.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../features/authSlice';
 import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
@@ -47,6 +47,9 @@ const Login = () => {
           Login
         </Button>
       </Form>
+      <p className="mt-3">
+        If not a user, please <Link to="/signup">Signup</Link> here?
+      </p>
     </Container>
   );
 };
