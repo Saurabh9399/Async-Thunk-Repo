@@ -2,6 +2,7 @@ import React, { lazy, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AnalyticsDashboard from "./pages/Dashboard";
 
 const Home = lazy(() => import('./pages/Home'));
 const Users = lazy(() => import('./pages/Users'));
@@ -40,6 +41,8 @@ const ProjectRoutes = ({children}) => {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="users" element={<ProtectedRoute element={<Users />} />} />
+          <Route path="dashboard" element={<ProtectedRoute element={<AnalyticsDashboard />} />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

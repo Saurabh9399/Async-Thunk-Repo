@@ -7,6 +7,7 @@ i18n.use(initReactI18next).init({
     en: {
       translation: {
         // English translations go here
+        dashboard:"Dashboard",
         home: "Home",
         users: "Users",
         logout: "Logout",
@@ -42,6 +43,7 @@ i18n.use(initReactI18next).init({
     },
     fr: {
       translation: {
+        dashboard:"Tableau de bord",
         home: "Maison",
         users: "Utilisateurs",
         logout: "Se déconnecter",

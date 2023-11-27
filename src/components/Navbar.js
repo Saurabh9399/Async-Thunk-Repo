@@ -26,6 +26,7 @@ const MyNavbar = () => {
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">{t('home')}</Nav.Link>
               <Nav.Link as={Link} to="/users">{t('users')}</Nav.Link>
+              <Nav.Link as={Link} to="/dashboard">{t('dashboard')}</Nav.Link>
             </Nav>
           )}
           <Nav className="ms-auto"> {/* Added ms-auto for right alignment */}
