@@ -91,9 +91,13 @@ export const userDetail = createSlice({
     loading: false,
     error: null,
     searchData: [],
+    language:'en',
   },
   reducers: {
-    searchUsers: (state, action) => {},
+    selectLanguages: (state, action) => {
+      state.language = action.payload;
+      localStorage.setItem('language', action.payload);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -152,6 +156,6 @@ export const userDetail = createSlice({
   },
 });
 
-export const { searchUsers } = userDetail.actions;
+export const { selectLanguages } = userDetail.actions;
 
 export default userDetail.reducer;

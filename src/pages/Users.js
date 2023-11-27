@@ -17,9 +17,12 @@ import {
 import UserCard from '../components/UserCard';
 import { deleteUser, editUser, getUsers } from '../features/userDetailsSlice';
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from "react-i18next";
+
 
 const Users = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation()
   const usersList = useSelector((app) => app.user.users);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -66,7 +69,7 @@ const Users = () => {
         <Col md="6" className="mb-3 mt-3">
           <Input
             type="text"
-            placeholder="Search by name"
+            placeholder={t("search_by_name")}
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -80,7 +83,7 @@ const Users = () => {
         <Col md="6" className="mb-3">
           <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
             <DropdownToggle caret>
-              {selectedGender ? `Filter: ${selectedGender}` : 'Filter by Gender'}
+              {selectedGender ? `Filter: ${selectedGender}` : t('filter_by_gender')}
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem onClick={() => handleGenderChange(null)}>All Genders</DropdownItem>

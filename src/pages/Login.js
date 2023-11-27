@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../features/authSlice';
 import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { useTranslation } from 'react-i18next';  // Add this import
 
 const Login = () => {
+  const { t } = useTranslation();  // Hook to access translations
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,29 +33,28 @@ const Login = () => {
         console.error('Login failed');
       }
     } catch (error) {
-     console.log(error);
+      console.log(error);
     }
-   
   };
 
   return (
     <Container className="mt-5">
-      <h2>Login</h2>
+      <h2>{t('login')}</h2>
       <Form>
         <FormGroup>
-          <Label for="username">Username</Label>
+          <Label for="username">{t('username')}</Label>
           <Input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </FormGroup>
         <FormGroup>
-          <Label for="password">Password</Label>
+          <Label for="password">{t('password')}</Label>
           <Input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </FormGroup>
         <Button color="primary" onClick={handleLogin}>
-          Login
+          {t('loginButton')}
         </Button>
       </Form>
       <p className="mt-3">
-        If not a user, please <Link to="/signup">Signup</Link> here?
+        {t('notUser')} <Link to="/signup">{t('signupLink')}</Link>?
       </p>
     </Container>
   );
