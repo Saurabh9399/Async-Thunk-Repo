@@ -3,7 +3,6 @@ import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../features/authSlice';
-import { ProtectedRoute } from '../ProjectRoutes';
 
 const MyNavbar = () => {
   const dispatch = useDispatch();

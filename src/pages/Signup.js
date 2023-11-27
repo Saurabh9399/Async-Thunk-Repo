@@ -14,7 +14,8 @@ const Signup = () => {
 
   const handleSignup = async () => {
     // Perform API call to register user
-    const response = await fetch('http://localhost:3001/api/signup', {
+    try {
+      const response = await fetch('http://localhost:3001/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,6 +31,10 @@ const Signup = () => {
       const errorData = await response.json();
       console.error(`Signup failed: ${errorData.error}`);
     }
+    } catch (error) {
+      console.log(error);
+    }
+    
   };
 
   return (

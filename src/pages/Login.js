@@ -14,21 +14,26 @@ const Login = () => {
 
   const handleLogin = async () => {
     // Perform API call to authenticate user
-    const response = await fetch('http://localhost:3001/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(login({ user: { username }, token: data.token }));
-      navigate('/'); // Redirect to your dashboard or protected route
-    } else {
-      console.error('Login failed');
+    try {
+      const response = await fetch('http://localhost:3001/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(login({ user: { username }, token: data.token }));
+        navigate('/'); // Redirect to your dashboard or protected route
+      } else {
+        console.error('Login failed');
+      }
+    } catch (error) {
+     console.log(error);
     }
+   
   };
 
   return (
