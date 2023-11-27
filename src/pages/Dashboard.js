@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@mui/material';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import DndContainer from '../components/draganddrop/DndContainer';
 
 const AnalyticsDashboard = () => {
   // Mock Data
@@ -73,7 +74,9 @@ const AnalyticsDashboard = () => {
           </ResponsiveContainer>
         </Paper>
       </Grid>
+      <DndContainer />
     </Grid>
+
   );
 };
 
