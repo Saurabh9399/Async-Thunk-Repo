@@ -62,6 +62,10 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.get('/', async(req, res) => {
+    res.json({msg: 'hello' })
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
