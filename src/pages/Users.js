@@ -33,7 +33,7 @@ const Users = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
+  }, [dispatch]);
 
   const onEdit = (user) => {
     console.log('edit', user);

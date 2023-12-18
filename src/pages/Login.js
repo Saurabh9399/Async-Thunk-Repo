@@ -17,7 +17,7 @@ const Login = () => {
   const handleLogin = async () => {
     // Perform API call to authenticate user
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
+      const response = await fetch('http://localhost:8000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         dispatch(login({ user: { username }, token: data.token }));
-        navigate('/'); // Redirect to your dashboard or protected route
+        navigate('/home'); // Redirect to your dashboard or protected route
       } else {
         console.error('Login failed');
       }

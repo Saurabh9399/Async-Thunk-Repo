@@ -19,12 +19,12 @@ const MyNavbar = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
-        <Navbar.Brand as={Link} to="/">{t('user_manag')}</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/home">{t('user_manag')}</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           {isAuthenticatedState && (
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">{t('home')}</Nav.Link>
+              <Nav.Link as={Link} to="/home">{t('home')}</Nav.Link>
               <Nav.Link as={Link} to="/users">{t('users')}</Nav.Link>
               <Nav.Link as={Link} to="/dashboard">{t('dashboard')}</Nav.Link>
             </Nav>

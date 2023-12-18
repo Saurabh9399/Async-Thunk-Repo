@@ -17,7 +17,7 @@ const Signup = () => {
   const handleSignup = async () => {
     // Perform API call to register user
     try {
-      const response = await fetch('http://localhost:3001/api/signup', {
+      const response = await fetch('http://localhost:8000/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const Signup = () => {
       if (response.ok) {
         const data = await response.json();
         dispatch(login({ user: { username }, token: data.token }));
-        navigate('/'); // Redirect to your dashboard or protected route
+        navigate('/home'); // Redirect to your dashboard or protected route
       } else {
         const errorData = await response.json();
         console.error(`Signup failed: ${errorData.error}`);

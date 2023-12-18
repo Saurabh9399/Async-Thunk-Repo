@@ -37,8 +37,8 @@ const ProjectRoutes = ({children}) => {
       <Router>
         {children}
         <Routes>
-          <Route path="/" element={<ProtectedRoute element={<Home />}/>} />
-          <Route path="login" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<ProtectedRoute element={<Home />}/>} />
           <Route path="signup" element={<Signup />} />
           <Route path="users" element={<ProtectedRoute element={<Users />} />} />
           <Route path="dashboard" element={<ProtectedRoute element={<AnalyticsDashboard />} />} />

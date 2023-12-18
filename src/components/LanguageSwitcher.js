@@ -17,7 +17,7 @@ const LanguageSwitcher = () => {
     if(localStorage.getItem('language')){
         i18n.changeLanguage(localStorage.getItem('language'));
     }
-  },[])
+  },[i18n])
 
   return (
     <Dropdown>
